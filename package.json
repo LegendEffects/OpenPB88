@@ -1,0 +1,27 @@
+{
+  "name": "open-pb88",
+  "version": "1.0.0",
+  "description": "An Open Source Firmare For PB88",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon src/index.ts -e ts"
+  },
+  "repository": "https://github.com/LegendEffects/OpenPB88.git",
+  "author": "Legend <evaninho94@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@types/pako": "^1.0.1",
+    "@types/websocket": "^1.0.1",
+    "canvas": "^2.6.1",
+    "electron-prebuilt-path": "^2.0.0",
+    "http": "^0.0.1-security",
+    "pako": "^1.0.11",
+    "ts-node": "^8.10.2",
+    "websocket": "^1.0.31"
+  }
+}

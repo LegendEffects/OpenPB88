@@ -1,7 +1,4 @@
-import { Display } from "./display/Display";
-import Screen from "./graphics/Screen";
-import SpriteBatch from "./graphics/SpriteBatch";
-import { DisplayAdapter } from "./interfaces/Display";
+import { Display, Screen, DisplayAdapters } from './graphics';
 import { IInputReceiver } from "./interfaces/Input";
 
 type AppSettings = {
@@ -9,11 +6,11 @@ type AppSettings = {
   height: number;
 }
 
-export default class App {
+export default class PixelBotApp {
   private settings: AppSettings;
   private display: Display;
   
-  private displayAdapter?: DisplayAdapter;
+  private displayAdapter?: DisplayAdapters.DisplayAdapter;
   private inputReceiver?: IInputReceiver;
   private screen?: Screen;
 
@@ -22,7 +19,7 @@ export default class App {
     this.display = new Display(settings.width, settings.height);
   }
 
-  public setDisplayAdapter(adapter: DisplayAdapter) {
+  public setDisplayAdapter(adapter: DisplayAdapters.DisplayAdapter) {
     this.displayAdapter = adapter;
   }
   public setInputReceiver(receiver: IInputReceiver) {
@@ -62,15 +59,15 @@ export default class App {
   //
   async tick() {
     // Reset the screen
-    this.display.reset();
+    await this.display.reset();
 
     // Render the screen
     if(this.screen === undefined) return;
-    this.screen.render();
+    await this.screen.render();
 
     // Tell the display adapter to push it to the output device
     if(this.displayAdapter === undefined) return;
-    this.displayAdapter.render(this.display);
+    await this.displayAdapter.render(this.display);
   }
 
   listen() {
@@ -79,6 +76,3 @@ export default class App {
     }, 0)
   }
 }
-
-// import floppy from "./assets/sprites/floppy.json";
-// const testSprite = Sprite.fromColorMappedArray(floppy.data);

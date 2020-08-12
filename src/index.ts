@@ -1,9 +1,9 @@
-import App from "./app";
-import Menu from "./screens/Menu";
-import WebSocketAdapter from "./display/adapters/WebSocketAdapter";
-import SpriteBatch from "./graphics/SpriteBatch";
+import { SpriteBatch, DisplayAdapters } from "./lib/graphics"; 
 
-export class Application extends App {
+import Menu from "./screens/Menu";
+import PixelBotApp from "./lib";
+
+export class Application extends PixelBotApp {
   private spriteBatch: SpriteBatch;
 
   private menuScreen: Menu;
@@ -14,7 +14,7 @@ export class Application extends App {
       height: 24
     });
 
-    this.setDisplayAdapter(new WebSocketAdapter(this));
+    this.setDisplayAdapter(new DisplayAdapters.WebSocketAdapter(this));
     
     // Finished Setup
     this.spriteBatch = new SpriteBatch(this.getDisplay());

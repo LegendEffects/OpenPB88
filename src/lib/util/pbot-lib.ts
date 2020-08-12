@@ -1,5 +1,4 @@
-import Pako from 'pako';
-import palette from 'src/assets/palette.json';
+import { palette } from './Palette';
 
 //
 // Types

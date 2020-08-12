@@ -2,7 +2,7 @@ import { Canvas } from 'canvas';
 import { Frame } from '../util/pbot-lib';
 import { Color } from '../util';
 
-export class Display extends Canvas {
+export default class Display extends Canvas {
   private backgroundColor: string = '#000';
 
   //
@@ -51,8 +51,4 @@ export class Display extends Canvas {
   public getPixel(x: number, y: number): Uint8ClampedArray {
     return this.getContext('2d').getImageData(x, y, 1, 1).data;
   }
-}
-
-export default {
-  Display,
 }

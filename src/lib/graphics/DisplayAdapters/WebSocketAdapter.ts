@@ -1,20 +1,17 @@
-import { DisplayAdapter } from "../../interfaces/Display";
-import { Frame } from "../../util/pbot-lib";
-import http, { Server } from 'http';
-import { server as WebSocketServer, request as Request, connection as Connection } from 'websocket';
-import { Display } from "../Display";
-
+import { Display } from '../../graphics';
 import { RotaryInputType, IInputReceiver } from "../../interfaces/Input";
-import App from "../../app";
+import DisplayAdapter from './DisplayAdapter'
+import PixelBotApp from '../..';
+
+import { server as WebSocketServer, connection as Connection } from 'websocket';
+import http, { Server } from 'http';
 
 export default class WebSocketAdapter extends DisplayAdapter {
-  private app: App;
   private httpServer: Server;
   private webSocketServer: WebSocketServer;
   
-  constructor(app: App) {
+  constructor(app: PixelBotApp) {
     super();
-    this.app = app;
 
     this.httpServer = http.createServer((req, res) => {
       console.log(`${new Date()} Received request for ${req.url}`);
@@ -36,16 +33,12 @@ export default class WebSocketAdapter extends DisplayAdapter {
 
   render(display: Display) {
     this.webSocketServer.broadcast(JSON.stringify(display.asFrame()));
-
-    // for(const connection of this.webSocketServer.connections) {
-    //   connection.emit('frame', )
-    // }
   }
 
   //
   // Private
   //
-  private connectionHandler(app: App) {
+  private connectionHandler(app: PixelBotApp) {
     return (connection: Connection) => {
       console.log(`${new Date()} Connection accepted.`);
       connection.on('message', (message) => {
@@ -65,6 +58,7 @@ export default class WebSocketAdapter extends DisplayAdapter {
             
             default:
               console.log(message);
+              break;
           }
         } else {
           console.log(message);

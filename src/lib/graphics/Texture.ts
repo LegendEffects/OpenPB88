@@ -1,7 +1,7 @@
-import palette from '../../assets/palette.json';
-import { Color } from '../../util';
+import palette from '../palette.json';
+import { Color } from '../util';
 
-export default class Sprite {
+export default class Texture {
   private width: number;
   private height: number;
   private image: Uint8ClampedArray[][];
@@ -21,11 +21,11 @@ export default class Sprite {
   public getHeight() {
     return this.height;
   }
-  public getImage() {
+  public async getImage() {
     return this.image;
   }
 
-  public static fromColorMappedArray(data: string[][]): Sprite {
+  public static fromColorMappedArray(data: string[][]): Texture {
     let final = [];
 
     for(let x = 0; x < data.length; x++) {  
@@ -44,6 +44,6 @@ export default class Sprite {
       final.push(row);
     }
 
-    return new Sprite(data.length, data[0].length, final);
+    return new Texture(data.length, data[0].length, final);
   }
 }

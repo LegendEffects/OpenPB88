@@ -4,6 +4,16 @@ export type RGBComponent = {
   b: number
 }
 
+//
+// Utility
+//
+export function isTransparent(pixelData: Uint8ClampedArray) {
+  return (pixelData[0] === 0) && (pixelData[1] === 0) && (pixelData[2] === 0) && (pixelData[3] === 0);
+}
+
+//
+// RGB Converters
+//
 export function rgbToHex({r, g, b}: RGBComponent): string {
   return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
@@ -17,10 +27,9 @@ export function hexToRgb(hex: string) {
   } : null;
 }
 
-export function isTransparent(pixelData: Uint8ClampedArray) {
-  return (pixelData[0] === 0) && (pixelData[1] === 0) && (pixelData[2] === 0) && (pixelData[3] === 0);
-}
-
+//
+// Array Converters
+//
 export function toArray({r, g, b}: RGBComponent): Uint8ClampedArray {
   const color = new Uint8ClampedArray(4);
 

@@ -55,6 +55,10 @@ export default class SpriteBatch {
 
       if(xt < 0 || yt < 0 || xt > this.display.width || yt > this.display.height) continue;
 
+      if(Color.isTransparent(image[xo][yo])) {
+        continue;
+      }
+
       this.display.setPixel(xt, yt, Color.rgbToHex(Color.fromArray(image[xo][yo])));
     }
   }

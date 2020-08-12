@@ -25,14 +25,19 @@ export default class Texture {
     return this.image;
   }
 
-  public static fromColorMappedArray(data: string[][]): Texture {
+  public static fromColorMappedArray(data: (string | null)[][]): Texture {
     let final = [];
 
     for(let x = 0; x < data.length; x++) {  
       let row: Uint8ClampedArray[] = [];
 
       for(let y = 0; y < data[x].length; y++) {  
-        const code: string = data[x][y];
+        const code: string|null = data[x][y];
+        if(code === null) {
+          row.push(Color.transparent);
+          continue;
+        }
+
         const rgb = Color.hexToRgb((palette as any)[code]);
         if(rgb === null) {
           throw new SyntaxError("Unable to translate palette code to RGB values.");

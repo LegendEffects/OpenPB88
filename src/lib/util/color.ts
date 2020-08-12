@@ -11,6 +11,13 @@ export function isTransparent(pixelData: Uint8ClampedArray) {
   return (pixelData[0] === 0) && (pixelData[1] === 0) && (pixelData[2] === 0) && (pixelData[3] === 0);
 }
 
+let transparentColor = new Uint8ClampedArray(4);
+for (let i = 0; i <= 3; i++) {
+  transparentColor[i] = 0;
+}
+
+export const transparent = transparentColor;
+
 //
 // RGB Converters
 //

@@ -1,0 +1,14 @@
+{
+  "animated": false,
+  "name": "Sun",
+
+  "data": [
+    [null, null, null, null, null, null, null, null],
+    [null, "f", null, null, null, null, "f", null],
+    [null, null, null, "f", "f", null, null, null],
+    [null, null, "f", "f", "f", "f", null, null],
+    ["f", null, "f", "f", "f", "f", null, "f"],
+    [null, null, null, "f", "f", null, null, null],
+    [null, "f", null, null, null, null, "f", null]
+  ]
+}
